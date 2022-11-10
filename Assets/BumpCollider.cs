@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 public class BumpCollider : MonoBehaviour
 {
@@ -8,32 +9,57 @@ public class BumpCollider : MonoBehaviour
     public Vector3 push;
     Rigidbody rb;
     public float force;
-    public ContactPoint[] contactPoints;
+    ContactPoint[] contactPoints;
+    public AnimationCurve bumpCurve;
+    float bumpTimer;
+    public float bumpDuration;
+    public Vector3 question;
+    bool bam;
+    bool zero;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        bam = false;
+        zero = false;
     }
     private void OnCollisionEnter(Collision collision)
     {
-        contactPoints = collision.contacts;
+
         if (collision.collider.CompareTag("Level"))
         {
-            Debug.Log(contactPoints);
+            contactPoints = collision.contacts;
+            Vector3 impact = contactPoints[0].point;
+            data = transform.position - impact;
+            push = new Vector3(data.x, 0, data.z).normalized;
+            bam = true;
+            zero = true;
         }
     }
-
-
-
-    /*private void OnTriggerEnter(Collider other)
+    private void FixedUpdate()
     {
-        if (other.CompareTag("Level"))
+        if (bam)
         {
-            data = transform.position - other.transform.position;
-            Vector3 pos = other.ClosestPointOnBounds(data);
-            Vector3 data2 = transform.position - pos;
-            push = new Vector3(data2.x, 0, data2.z).normalized;
-            rb.AddForce(push * force * Time.fixedDeltaTime);
-
+            if (zero)
+            {
+                //rb.Sleep();
+                zero = false;
+            }
+            BumpScript(push);
+            rb.AddForce(question * force);
         }
-    }*/
+    }
+    void BumpScript(Vector3 push)
+    {
+        if (bumpTimer < bumpDuration)
+        {
+            bumpTimer += Time.deltaTime;
+            float z = bumpCurve.Evaluate(bumpTimer / bumpDuration);
+            question = push * z;
+        }
+        else
+        {
+            bumpTimer = 0;
+            bam = false;
+        }
+    }
 }
