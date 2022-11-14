@@ -35,15 +35,17 @@ public class BumpCollider : MonoBehaviour
             zero = true;
         }
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Level"))
+        {
+            zero = false;
+        }
+    }
     private void FixedUpdate()
     {
         if (bam)
         {
-            if (zero)
-            {
-                //rb.Sleep();
-                zero = false;
-            }
             BumpScript(push);
             rb.AddForce(question * force);
         }
@@ -53,6 +55,7 @@ public class BumpCollider : MonoBehaviour
         if (bumpTimer < bumpDuration)
         {
             bumpTimer += Time.deltaTime;
+            if (zero) bumpTimer = 0;
             float z = bumpCurve.Evaluate(bumpTimer / bumpDuration);
             question = push * z;
         }
