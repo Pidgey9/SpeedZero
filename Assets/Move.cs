@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
     float h;
     float v;
     public float angle;
+    public VarFloat speedy;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -19,6 +20,7 @@ public class Move : MonoBehaviour
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
         move = ( transform.forward * v) * speed * Time.fixedDeltaTime;
+        speedy.value = rb.velocity.magnitude;
     }
     void FixedUpdate()
     {

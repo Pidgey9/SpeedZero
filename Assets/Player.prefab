@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4415211663843590917}
   - component: {fileID: 4415211663843590916}
   - component: {fileID: 4506272584270435755}
+  - component: {fileID: 4188097972536045787}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -65,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 400
   angle: 100
+  speedy: {fileID: 11400000, guid: 418f69a5e311ec94fb8e5166927539da, type: 2}
 --- !u!114 &4506272584270435755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +82,57 @@ MonoBehaviour:
   rTime: {fileID: 11400000, guid: 57529269634147c439b8ff2b67ac9b0e, type: 2}
   time: {fileID: 11400000, guid: bac12b3d3ebd6ba42b974f9a4f01cd09, type: 2}
   bestTime: {fileID: 11400000, guid: a38e3e1c23225424c8d21cb5bf04775a, type: 2}
+--- !u!114 &4188097972536045787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415211663843590918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87570e59d90cffe459de0db74e9d45cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {x: 0, y: 0, z: 0}
+  push: {x: 0, y: 0, z: 0}
+  force: 4000
+  bumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -2.6393988
+      outSlope: -2.6393988
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.23875552
+      value: 0.36982897
+      inSlope: -1.0408458
+      outSlope: -1.0408458
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15303017
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.48582155
+      outSlope: -0.48582155
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  bumpDuration: 2
+  question: {x: 0, y: 0, z: 0}
+  bam: 0
 --- !u!1 &4415211665726860156
 GameObject:
   m_ObjectHideFlags: 0

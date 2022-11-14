@@ -14,7 +14,7 @@ public class BumpCollider : MonoBehaviour
     float bumpTimer;
     public float bumpDuration;
     public Vector3 question;
-    bool bam;
+    public bool bam;
     bool zero;
     private void Awake()
     {
